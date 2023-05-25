@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h3 id="ketqua1"></h3>
+<h3 id="ketqua2"></h3>
+</body>
+</html>
+<script>
+    let Temperature = function (degree) {
+        this.Celcius = degree;
+        this.TransferF = function () {
+            return (9 / 5 * this.Celcius + 32)
+        }
+        this.TranferK = function () {
+            return this.Celcius + 273.15
+        }
+    };
+    let transfer = new Temperature(25);
+    document.getElementById("ketqua1").innerHTML = `Nhiệt độ F sau chuyển đổi từ độ C: ${transfer.TransferF()} <br>`;
+    document.getElementById('ketqua2').innerHTML = `Nhiệt độ K sau chuyển đổi từ độ C: ${transfer.TranferK()}`;
+
+</script>

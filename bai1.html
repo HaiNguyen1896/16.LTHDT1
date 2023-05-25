@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1000" height="600" style="border: solid;border-color: gray"></canvas>
+</body>
+</html>
+<script>
+    let Rectangle = function (width, height) {
+        this.width = width;
+        this.height = height;
+        this.getWidth = function () {
+            return this.width;
+        }
+        this.getHeight = function () {
+            return this.height;
+        }
+        this.setWidth = function (width) {
+            return this.width = width;
+        }
+        this.setHeight = function (height) {
+            return this.height = height;
+        }
+        this.RectangleArea = function () {
+            return this.width * this.height;
+        }
+        this.RectanglePerimeters = function () {
+            return 2 * (this.width + this.height);
+        }
+        this.drawRectangle = function () {
+            let ctx = document.getElementById("myCanvas").getContext("2d");
+            ctx.rect(50, 50, this.width, this.height);
+            ctx.fillStyle = '#fce071';
+            ctx.stroke();
+            ctx.fill();
+        }
+    };
+    let rectangle = new Rectangle(400, 200);//Gán đối tượng với kích thước chiều rộng 400 và chiều cao 200
+    rectangle.drawRectangle();
+    let w = rectangle.getWidth();
+    let h = rectangle.getHeight();
+    alert(`Hình chữ nhật trước khi thay đổi có kích thước bxh = ${w} x ${h}, diện tích HCN là ${rectangle.RectangleArea()}, chu vi HCN là ${rectangle.RectanglePerimeters()}`)
+
+    // Thay đổi kích thước hình chữ nhật, vẽ hình chữ nhật mới
+    rectangle.setWidth(800);
+    rectangle.setHeight(600);
+    w=rectangle.getWidth();
+    h=rectangle.getHeight();
+    rectangle.drawRectangle();
+    alert(`Hình chữ nhật sau khi thay đổi có kích thước bxh = ${w} x ${h}, diện tích HCN là ${rectangle.RectangleArea()}, chu vi HCN là ${rectangle.RectanglePerimeters()}`)
+
+
+</script>
