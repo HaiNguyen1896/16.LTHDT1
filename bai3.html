@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    let Mobile = function () {
+        this.charge = 100;
+        this.textInput = '';
+        this.receivedMsg = [];
+        this.sendedMsg = [];
+        this.systemCheck = true;
+        this.MobileOF = function () {
+            if (this.systemCheck === true) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        this.TurnOnMobile = function () {
+            if (this.systemCheck === true) {
+                alert(`Mobile is on already`);
+            } else {
+                this.systemCheck = false;
+                alert(`Mobile is off`);
+            }
+            this.charge--;
+        }
+        this.TurnOffMobile = function () {
+            if (this.systemCheck === true) {
+                this.systemCheck = false;
+            } else {
+                this.systemCheck = false;
+            }
+            this.charge--;
+        }
+        this.chargeBattery = function () {
+            if (this.charge === 100) {
+                alert(`you no need to charge the mobile`);
+            } else {
+                alert(`You can charge`)
+                this.charge++;
+            }
+        }
+        this.messageTyping = function () {
+            if (this.MobileOF() === true) {
+                this.textInput = prompt('Text Something');
+            }
+            this.charge--;
+        }
+        this.receiveMessage = function (message) {
+            if (this.MobileOF() === true) {
+                this.receivedMsg.push(message);
+            }
+            this.charge--;
+        }
+        this.sendMessage = function (mobile) {
+            if (this.MobileOF() == true) {
+                mobile.receiveMessage(this.textInput);
+                this.sendedMsg.push(this.textInput);
+            }
+            this.charge--;
+        }
+        this.checkInbox = function () {
+            let receivedMsg = '';
+            if (this.MobileOF() === true) {
+                if (this.receivedMsg.length === 0) {
+                    console.log(`Không có tin nhắn trong hộp thư đến`);
+                } else {
+                    console.log(`Có tin nhắn`)
+                    for (let i = 0; i < this.receivedMsg.length; i++) {
+                        receivedMsg += this.receivedMsg[i] + '<br>';
+                        //alert(receivedMsg);
+                    }
+
+                }
+                this.charge--;
+            }
+        }
+        this.checkSendedMsg = function () {
+            let sendedmsg = '';
+            if (this.MobileOF === true) {
+                if (this.sendedMsg.length === 0) {
+                    console.log(`Không có tin nhắn trong hộp thư đã gửi`);
+                } else {
+                    console.log(`Có tin nhắn`)
+                    for (let i = 0; i < this.sendedMsg.length; i++) {
+                        sendedmsg += this.sendedMsg[i] + '<br>';
+                    }
+                    alert(sendedmsg);
+                }
+                this.charge--;
+            }
+        }
+    }
+    let nokia = new Mobile();
+    let iphone = new Mobile();
+    nokia.TurnOnMobile();
+    iphone.TurnOnMobile();
+    nokia.messageTyping();
+    nokia.sendMessage(iphone);
+    iphone.receiveMessage();
+    iphone.checkInbox();
+    console.log(nokia.sendedMsg)
+    console.log(iphone.receivedMsg);
+
+
+</script>
